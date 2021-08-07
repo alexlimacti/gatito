@@ -1,17 +1,21 @@
 import React from 'react';
 import { SafeAreaView, StatusBar, KeyboardAvoidingView, Platform } from 'react-native';
-import estilos from '../../styles/estilosGlobal';
+import estilosGlobal, { cores } from '../../styles/estilosGlobal';
+import estilos from '../../styles/estilosTelaPadrao/';
 
 export default function TelaPadrao({ children }){
-  return <SafeAreaView style={estilos.preencher}>
+  return <>
+    <SafeAreaView style={estilos.ajusteTela}>
     
     {/* Usado especificamente para android, para componentes não subscreverem a statusbar */}
-    <StatusBar />
-    <KeyboardAvoidingView
+    <StatusBar backgroundColor={cores.roxo} />
+    <KeyboardAvoidingView 
       behavior={Platform.OS == "ios" ? "padding" : "height"}
-      style={estilos.preencher}
+      style={estilosGlobal.preencher}
     >
       {children}
-    </KeyboardAvoidingView>
-  </SafeAreaView>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
+    <SafeAreaView style={estilos.ajusteTelaBaixo} />
+  </>
 }

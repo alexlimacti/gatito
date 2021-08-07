@@ -23,34 +23,35 @@ export default function Item({nome, preco, descricao}){
     atualizQuantidadeTotal(1);
   }
 
-  return <><TouchableOpacity style={estilos.informacao} onPress={inverteExpandir}>
-    <Text style={estilos.nome}>{nome}</Text>
-    <Text style={estilos.descricao}>{descricao}</Text>
-    <Text style={estilos.preco}>{
-      Intl.NumberFormat('pt-BR',{
-        style: 'currency', currency: 'BRL'
-      }).format(preco)
-    }</Text>
-  </TouchableOpacity>
-  {expandir &&
-    <View style={estilos.carrinho}>
-      <View>
-        <View style={estilos.valor}>
-          <Text style={estilos.descricao}>Quantidade:</Text>
-          <CampoInteiro estilos={estilos.quantidade} valor={quantidade} acao={atualizQuantidadeTotal} />
+  return <>
+    <TouchableOpacity style={estilos.informacao} onPress={inverteExpandir}>
+      <Text style={estilos.nome}>{nome}</Text>
+      <Text style={estilos.descricao}>{descricao}</Text>
+      <Text style={estilos.preco}>{
+        Intl.NumberFormat('pt-BR',{
+          style: 'currency', currency: 'BRL'
+        }).format(preco)
+      }</Text>
+    </TouchableOpacity>
+    {expandir &&
+      <View style={estilos.carrinho}>
+        <View>
+          <View style={estilos.valor}>
+            <Text style={estilos.descricao}>Quantidade:</Text>
+            <CampoInteiro estilos={estilos.quantidade} valor={quantidade} acao={atualizQuantidadeTotal} />
+          </View>
+          <View style={estilos.valor}>
+            <Text style={estilos.descricao}>Total:</Text>
+            <Text style={estilos.preco}>{
+              Intl.NumberFormat('pt-BR',{
+                style: 'currency', currency: 'BRL'
+              }).format(total)
+            }</Text>
+          </View>
         </View>
-        <View style={estilos.valor}>
-          <Text style={estilos.descricao}>Total:</Text>
-          <Text style={estilos.preco}>{
-            Intl.NumberFormat('pt-BR',{
-              style: 'currency', currency: 'BRL'
-            }).format(total)
-          }</Text>
-        </View>
+        <Botao valor="Adicionar ao Carrinho" acao={() => {}} />
       </View>
-      <Botao valor="Adicionar ao Carrinho" acao={() => {}} />
-    </View>
-  }
-  <View style={estilos.divisor} />
+    }
+    <View style={estilos.divisor} />
   </>
 }
